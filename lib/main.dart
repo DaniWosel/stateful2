@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'formulario.dart';
+
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
           title: Text('Flutter layout demo'),
         ),
         body: Center(
-          child: Text('Hello World'),
+          child: Formulario(),
         ),
       ),
     );
