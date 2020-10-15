@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
           title: Text('Flutter layout demo'),
         ),
         body: Center(
-          child: Formulario(),
+          child: Login(),
         ),
       ),
     );

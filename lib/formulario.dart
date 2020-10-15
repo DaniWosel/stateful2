@@ -23,16 +23,16 @@ class FormularioState extends State<Formulario>{
 
 
 
-class Formulario extends StatefulWidget{
+class Login extends StatefulWidget{
   @override
-  FormularioState createState(){
-    print(" CreateState Formulario");
-    return new FormularioState();
+  LoginState createState(){
+    print(" CreateState Login");
+    return new LoginState();
   }
 }
 
-class FormularioState extends State<Formulario>{
-
+class LoginState extends State<Login>{
+  
   bool _mostrar= true;
 
   doClick(){
@@ -44,24 +44,87 @@ class FormularioState extends State<Formulario>{
   @override
   Widget build(BuildContext context){
     return
-      Row(
-        children: [
-          Expanded(child:
-          TextField(
-            obscureText: !_mostrar,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Password',
-            ),
-          ),
-          ),
+        Column(crossAxisAlignment: CrossAxisAlignment.center,
+               mainAxisAlignment: MainAxisAlignment.center,
+          children:[
+            Row(
+              children: [
+                Expanded(child:
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Nombre',
+                  ),
+                ),
+                ),
+              ]
 
-          FlatButton(onPressed: (){
-            doClick();
-          },
-          child: Text("ver")
-          )
+            ),
+
+            const Divider(
+              color: Colors.white10,
+              height:20,
+              thickness:5,
+              indent:20,
+              endIndent:0,
+            ),
+
+            Row(
+                children: [
+                  Expanded(child:
+                  TextField(
+                    obscureText: !_mostrar,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                  ),
+
+                  if (_mostrar)
+                    IconButton(
+                        icon: Icon(Icons.visibility),
+                        onPressed: (){
+                          doClick();
+                        }
+                    )
+                  else
+                    IconButton(
+                        icon: Icon(Icons.visibility_off),
+                        onPressed: (){
+                          doClick();
+                        }
+                    )
+
+                ]
+            ),
+
+            const Divider(
+              color: Colors.white10,
+              height:20,
+              thickness:5,
+              indent:20,
+              endIndent:0,
+            ),
+
+
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  color: Colors.white10,
+                ),
+                  child: Text("Recordar")
+                )
+
+              ]
+
+            )
         ]
-      );
+        );
+
   }
 }
