@@ -32,8 +32,10 @@ class Login extends StatefulWidget{
 }
 
 class LoginState extends State<Login>{
-  
+
+  TextEditingController _controller = TextEditingController();
   bool _mostrar= true;
+  bool _recordar= true;
 
   doClick(){
     print("click");
@@ -41,9 +43,19 @@ class LoginState extends State<Login>{
     });
   }
 
+  click(){
+    print("click");
+    setState((){
+         _recordar = !_recordar;
+         _controller.clear();
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context){
-    return
+    if (_recordar)
+      return
         Column(crossAxisAlignment: CrossAxisAlignment.center,
                mainAxisAlignment: MainAxisAlignment.center,
           children:[
@@ -112,12 +124,13 @@ class LoginState extends State<Login>{
                 mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   border: Border.all(),
                   color: Colors.white10,
                 ),
-                  child: Text("Recordar")
+                  child: FlatButton(
+                      onPressed: click,
+                      child:Text("Recordar"))
                 )
 
               ]
@@ -125,6 +138,49 @@ class LoginState extends State<Login>{
             )
         ]
         );
+     else
+       return
+         Column(crossAxisAlignment: CrossAxisAlignment.center,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children:[
+                 Row(
+                    children: [
+                        Expanded(child:
+                          TextField(
+                            controller: _controller,
+                           decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'email',
+                                                   ),
+                                 ),
+                             )
+                             ]
+                              )
+                             ,
 
+               const Divider(
+                 color: Colors.white10,
+                 height:20,
+                 thickness:5,
+                 indent:20,
+                 endIndent:0,
+               ),
+
+                 Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                color: Colors.white10,
+                                  ),
+                                 child: FlatButton(
+                                 onPressed: click,
+                                  child:Text("Submit"))
+                                          )
+                           ]
+                 ),
+                      ]
+               );
   }
 }
